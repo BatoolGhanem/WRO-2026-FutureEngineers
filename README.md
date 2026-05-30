@@ -43,13 +43,11 @@ and color detection for lap counting.
 
 | Spec | Value |
 |------|-------|
-| Dimensions | ~26cm × 16cm × 20cm |
-| Weight | ~800g |
-| Max Speed | ~0.8 m/s |
-| Steering Accuracy | ±2° |
-| Battery Life | ~20 min |
-| Charge Time | ~45 min |
-
+| Chassis Width | 147mm |
+| Chassis Weight | 499g |
+| ESP32 Weight | 9g |
+| L298N Weight | 24g |
+| Battery Weight | 33g |
 ---
 
 ## 🔧 Hardware
