@@ -1,5 +1,5 @@
-# 🚗 WRO 2026 — Future Engineers
-### Team NextGen Minds | Palestine 🇵🇸
+# 🏎️ WRO 2026 — Future Engineers
+## Team NextGen Minds | Palestine 🇵🇸
 
 > An autonomous self-driving vehicle for WRO Future Engineers 2026,
 > powered by Multi-Sensor Fusion and real-time embedded control.
@@ -7,27 +7,90 @@
 ---
 
 ## 📋 Table of Contents
+
+- [Our Story](#our-story)
 - [Team](#team)
 - [Robot Overview](#robot-overview)
 - [Hardware](#hardware)
 - [Software](#software)
 - [Open Challenge](#open-challenge)
 - [Obstacle Challenge](#obstacle-challenge)
-- [Robot Photos](#robot-photos)
+- [Gallery](#gallery)
 - [Videos](#videos)
 - [Engineering Journal](#engineering-journal)
 
 ---
 
+## 📖 Our Story
+
+We are **Computer Engineering students at Birzeit University, Year 2**.
+When we first heard about WRO Future Engineers, we had no idea what it was.
+We started by researching the competition, reading the rules, and learning
+what a self-driving car actually needs.
+
+### Phase 1: Learning & Planning (May 2026)
+
+#### Day 1 — Discovering the Competition
+- First team meeting with our coach
+- Studied WRO 2026 rules together
+- Learned about the two challenges: Open Challenge and Obstacle Challenge
+- Researched what other teams use (Arduino, Raspberry Pi, ESP32)
+
+#### Day 2 — Dividing Responsibilities
+- **Batool:** Python & Computer Vision → Raspberry Pi
+- **Sara:** C++ & Embedded Systems → ESP32
+- Why this split? Batool has Python background, Sara has C++ background
+
+#### Day 3 — Choosing Components
+- Originally considered Arduino → switched to ESP32 (lighter, no breadboard needed)
+- Considered custom 3D-printed chassis → bought ready-made RC Ackermann kit (saves time, better wheels)
+- Chose sensors:
+  - VL53L1X (ToF)
+  - MPU-6050 (IMU)
+  - TCS34725 (Color Sensor)
+- Decided:
+  - Phase 1 = Open Challenge with ESP32 only
+  - Phase 2 = Add Raspberry Pi + Camera
+
+#### Day 4 — Shopping
+- Purchased all components from local electronics store
+- Key decisions:
+  - MPU-6050 instead of BNO085
+  - Open Challenge first
+  - Raspberry Pi integration later
+
+#### Day 5 — Chassis Assembly
+- Assembled RC Ackermann kit
+- Disassembled gearbox to inspect gear ratio
+- Measured dimensions using caliper
+- Chassis weight: **499g**
+- Chassis width: **147mm**
+
+#### Day 6 — Simulation & Safety
+- Started sensor simulation before wiring
+- Verified ESP32 communication with sensors
+- Raspberry Pi 3B+ became available
+- Confirmed suitability with professors
+
+### Current Status
+✅ Hardware acquired  
+✅ Chassis assembled  
+✅ Software architecture planned  
+🔄 Wiring and firmware development in progress
+
+---
+
 ## 👥 Team
 
-| | Name | Role |
-|--|------|------|
-| 📸 | Batool Ghanem | Software — Python & Computer Vision |
-| 📸 | Sara Abuarra | Hardware & Firmware — C++ & ESP32 |
+| Name | Role | Background |
+|------|------|------------|
+| Batool Ghanem | Software — Python & Computer Vision | Computer Engineering, Year 2 |
+| Sara Abuarra | Hardware & Firmware — C++ & ESP32 | Computer Engineering, Year 2 |
 
 **Coach:** Osid Ali
+
 **Institution:** Birzeit University
+
 **Country:** Palestine 🇵🇸
 
 ---
@@ -36,57 +99,73 @@
 
 A self-driving RC car built on an Ackermann chassis, controlled by
 an ESP32 microcontroller for real-time sensor fusion and motor control.
-Navigation relies on ToF wall-following, IMU-based turn execution,
-and color detection for lap counting.
+
+A Raspberry Pi 3B+ handles higher-level processing for the Obstacle Challenge.
 
 ### Specifications
 
 | Spec | Value |
 |------|-------|
-| Chassis Width | 147mm |
-| Chassis Weight | 499g |
-| ESP32 Weight | 9g |
-| L298N Weight | 24g |
-| Battery Weight | 33g |
+| Chassis Width | 147 mm |
+| Chassis Weight | 499 g |
+| Total Weight | ~688 g |
+| Weight Limit | 1500 g |
+| Margin | ~812 g ✅ |
+
 ---
 
 ## 🔧 Hardware
 
 ### Components List
 
-| Component | Model | Function | Why We Chose It |
-|-----------|-------|----------|-----------------|
-| Main Controller | ESP32 | Decision making + sensor fusion | Available, affordable, sufficient for Open Challenge |
-| Steering Servo | MG996R | Front wheel steering | High torque + precision |
-| Drive Motor | DC Gear Motor 25mm | Rear wheel propulsion | Compatible with chassis kit |
-| Motor Driver | L298N | Motor power control | Available locally |
-| IMU | MPU-6050 (GY-521) | Rotation & heading measurement | Originally planned BNO085, switched to MPU-6050 — sufficient for competition duration (~3 min per run, minimal drift) |
-| Distance Sensors | VL53L1X × 2 | Left/right wall following | 1mm accuracy — better than Ultrasonic |
-| Color Sensor | TCS3472 | Orange/blue line detection | Reliable & low cost |
-| Step-down | XL6009E1 | Voltage regulation | Powers ESP32 from battery safely |
-| Chassis | RC Ackermann Kit (RoboticX) | Robot frame | Ackermann geometry for accurate steering |
-| Battery | LiPo | Power source | Stable voltage throughout the run |
+| Component | Model | Weight | Function |
+|-----------|-------|--------|----------|
+| Main Processor | Raspberry Pi 3B+ | ~50g | Higher-level processing |
+| Motion Controller | ESP32 DevKit V1 | 9g | Motor & sensor control |
+| Steering Servo | MG996R | ~55g | Front wheel steering |
+| Drive Motor | DC Gear Motor | ~30g | Vehicle propulsion |
+| Motor Driver | L298N | 24g | Motor power control |
+| IMU | MPU-6050 | ~2g | Rotation & heading |
+| Distance Sensors | VL53L1X × 2 | ~2g each | Wall following |
+| Color Sensor | TCS34725 | ~1g | Line detection |
+| Step-down Converter | XL6009E1 | 11g | Voltage regulation |
+| Chassis | RC Ackermann Kit | 499g | Robot frame |
+| Battery | LiPo 2S | 33g | Power source |
 
 ### Wiring Diagram
 
-```
+```text
 Battery (LiPo)
-    ├──→ L298N ──→ DC Gear Motor
-    ├──→ XL6009E1 Step-down ──→ ESP32
-    │                              ├──→ MG996R Servo (PWM)
-    │                              ├──→ MPU-6050 (I2C)
-    │                              ├──→ VL53L1X Left (I2C)
-    │                              ├──→ VL53L1X Right (I2C)
-    │                              └──→ TCS3472 (I2C)
-    └──→ L298N signal ←── ESP32 (GPIO)
+├──→ L298N ──→ DC Motor
+├──→ XL6009E1 ──→ Raspberry Pi 3B+
+│                   └──→ ESP32 (UART)
+└──→ ESP32
+     ├──→ MG996R Servo
+     ├──→ MPU-6050
+     ├──→ VL53L1X Left
+     ├──→ VL53L1X Right
+     ├──→ TCS34725
+     └──→ L298N Control Pins
 ```
 
 ### Layer Design
 
-```
-Layer 2 (Top):   ToF sensors (left & right) + Color Sensor (bottom front)
-Layer 1:         ESP32 + MPU-6050 + Step-down (XL6009E1)
-Layer 0 (Base):  Chassis + L298N + DC Motor + MG996R Servo + Wheels
+```text
+Layer 2 (Top)
+├── Raspberry Pi 3B+
+└── Camera Module
+
+Layer 1
+├── ESP32
+├── MPU-6050
+└── XL6009E1
+
+Layer 0 (Base)
+├── Chassis
+├── L298N
+├── DC Motor
+├── MG996R Servo
+└── Wheels
 ```
 
 ---
@@ -95,50 +174,52 @@ Layer 0 (Base):  Chassis + L298N + DC Motor + MG996R Servo + Wheels
 
 ### Architecture
 
-```
-ESP32 (C++ / Arduino Framework)
-────────────────────────────────
-main.cpp              — Main control loop
-motor_control.cpp     — L298N + DC Motor
-servo_control.cpp     — MG996R steering
-imu_reader.cpp        — MPU-6050 yaw reading
-tof_sensors.cpp       — VL53L1X wall following
-color_detection.cpp   — TCS3472 line detection
-lap_counter.cpp       — Turn counting logic
-```
+```text
+Raspberry Pi (Python)          ESP32 (C++)
+─────────────────────          ───────────
 
-### Communication Protocol
+camera_vision.py      ←──→     motor_control.cpp
+obstacle_detect.py    ←──→     servo_control.cpp
+path_planning.py      ←──→     imu_reader.cpp
 
-All sensors communicate with ESP32 via I2C bus (GPIO 21, 22).
-Motor and servo receive PWM signals directly from ESP32 GPIO pins.
+                               tof_sensors.cpp
+                               color_detection.cpp
+                               lap_counter.cpp
+```
 
 ### Core Algorithm
 
 ```cpp
-while (lapCount < 3) {
-  String color = getColor();         // TCS3472 reads floor color
+while (lapCount < 3)
+{
+    String color = getColor();
 
-  if (color == "ORANGE" || color == "BLUE") {
-    detectDirection(color);           // First turn determines direction
-    turn90degrees();                  // MPU-6050 ensures ±2° accuracy
-    lapCount += 0.25;                // 4 turns = 1 complete lap
-  } else {
-    int error = tofLeft - tofRight;  // Wall following error
-    int steer = error * Kp;          // PID steering correction
-    setMotor(BASE_SPEED, steer);
-  }
+    if (color == "ORANGE" || color == "BLUE")
+    {
+        detectDirection(color);
+        turn90degrees();
+        lapCount += 0.25;
+    }
+    else
+    {
+        int error = tofLeft - tofRight;
+        int steer = error * Kp;
+
+        setMotor(BASE_SPEED, steer);
+    }
 }
 ```
 
 ### Dependencies
 
-```
-C++ (ESP32 Arduino Framework):
-- Wire.h               — I2C communication
-- ESP32Servo           — Servo control
-- Adafruit_VL53L1X    — ToF distance sensors
-- MPU6050              — by ElectronicCats
-- Adafruit_TCS34725   — Color sensor
+#### ESP32 Arduino Framework
+
+```text
+Wire.h
+ESP32Servo
+Adafruit_VL53L1X
+MPU6050
+Adafruit_TCS34725
 ```
 
 ---
@@ -147,147 +228,124 @@ C++ (ESP32 Arduino Framework):
 
 ### Strategy
 
-The robot completes 3 full laps autonomously:
+The robot completes three autonomous laps.
 
-1. **Straights:** Dual ToF sensors maintain equal distance from both walls
-2. **Turn Detection:** Color sensor detects orange/blue lines ~5cm ahead
-3. **Turn Execution:** IMU rotates exactly 90° with ±2° precision
-4. **Lap Counting:** Every 4 turns = 1 complete lap → stop at 12 turns
+#### Straight Sections
+- Dual ToF sensors maintain equal distance from both walls.
+
+#### Corner Detection
+- Color sensor detects track markers.
+
+#### Turning
+- MPU-6050 performs accurate 90° turns.
+
+#### Lap Counting
+- 4 turns = 1 lap
+- 12 turns = finish
 
 ### Results
 
 | Attempt | Time | Errors | Notes |
-|---------|------|--------|-------|
-| Run 1 | — | — | — |
-| Run 2 | — | — | — |
-| Run 3 | — | — | — |
-
-*(Updated continuously)*
+|----------|------|---------|-------|
+| Run 1 | Pending | Pending | Pending |
+| Run 2 | Pending | Pending | Pending |
+| Run 3 | Pending | Pending | Pending |
 
 ---
 
 ## 🚧 Obstacle Challenge
 
-*(In development — Phase 2)*
+### Status
+Phase 2 — Under Development
 
-Strategy will involve:
-- Camera-based color detection for red/green pillars
-- Left/right avoidance logic based on pillar color
-- Parallel parking in the final zone
+### Planned Hardware
+- Raspberry Pi 3B+
+- Camera Module
+
+### Planned Software
+- Python
+- OpenCV
+
+### Features
+- Red/Green pillar detection
+- Obstacle avoidance
+- Path planning
+- Autonomous parking
 
 ---
 
-## 📸 Robot Photos
+## 📸 Gallery
+
+### Robot Photos
 
 | Front | Back | Right |
-|-------|------|-------|
-| [photo] | [photo] | [photo] |
+|--------|--------|--------|
+| Pending | Pending | Pending |
 
 | Left | Top | Bottom |
-|------|-----|--------|
-| [photo] | [photo] | [photo] |
+|--------|--------|--------|
+| Pending | Pending | Pending |
+
+### Team Photo
+
+Pending
 
 ---
 
 ## 🎥 Videos
 
 | Challenge | Link |
-|-----------|------|
-| Open Challenge | [Watch](#) |
-| Obstacle Challenge | *(coming soon)* |
+|------------|------------|
+| Open Challenge | Coming Soon |
+| Obstacle Challenge | Coming Soon |
 
 ---
 
 ## 📖 Engineering Journal
 
-> **This is what separates us from other teams.**
-> We document everything — including failures and what we learned from them.
+See:
 
-### [2026-05-18] — Day 0: Team Meeting & Planning
+```text
+docs/JOURNAL.md
+```
 
-**What we did:**
-- Met with coach to understand WRO 2026 requirements
-- Studied the rulebook together
-- Planned robot architecture from scratch
-
-**Key decisions:**
-- Split responsibilities: Batool → Software, Sara → Hardware & Firmware
-- Sensor plan: ToF x2 (wall following), IMU (turns), Color Sensor (lines)
-- Camera needed for Obstacle Challenge — planned for Phase 2
-
----
-
-### [2026-05-24] — Day 1: Shopping & Component Selection
-
-**What we did:**
-- Visited electronics store and purchased all components
-- Researched and selected sensors
-
-**Key decisions:**
-
-1. **IMU: BNO085 → MPU-6050**
-   - Originally planned BNO085 (9-DOF, near-zero drift)
-   - Found MPU-6050 locally at lower cost
-   - Analysis: competition runs ~3 min, MPU-6050 drift negligible
-   - Decision: MPU-6050 accepted ✅
-
-2. **No Encoder Motor**
-   - IMU-based turn counting sufficient (4 turns = 1 lap)
-   - Reduces cost and complexity
-
-3. **Open Challenge First Strategy**
-   - Raspberry Pi not available yet
-   - ESP32 + sensors sufficient for Open Challenge
-   - Staged approach reduces risk
-
-**Components purchased:**
-- ESP32, VL53L1X x2, MPU-6050, TCS3472
-- RC Ackermann Chassis Kit (RoboticX)
-- L298N Motor Driver, LiPo Battery
-- MG996R Servo, XL6009E1 Step-down
-- Breadboard + jumper wires
-
----
-
-### [2026-05-25] — Day 2: Chassis Assembly
-
-**What we did:**
-- Assembled RC Ackermann chassis completely
-- Disassembled gearbox to count gear teeth for gear ratio calculation
-- Soldered sensor connections
-- Photographed all assembly steps
-
-**What worked:**
-- Chassis assembled successfully
-- Ackermann steering mechanism works smoothly
-
-**Next session:**
-- Connect ESP32 to motor and servo
-- Test basic movement
-
----
-
-*(Journal updated after every work session)*
+for the complete engineering process.
 
 ---
 
 ## 📁 Repository Structure
 
-```
+```text
 WRO-2026-FutureEngineers/
 ├── README.md
 ├── docs/
-│   ├── journal.md        ← Detailed engineering journal
-│   ├── hardware.md       ← Full hardware documentation
-│   └── wiring/           ← Wiring diagrams & schematics
+│   ├── JOURNAL.md
+│   ├── HARDWARE.md
+│   ├── WIRING.md
+│   ├── UART_PROTOCOL.md
+│   └── DECISIONS.md
 ├── src/
-│   └── esp32/            ← C++ (Motor & Sensor Control)
-├── models/               ← 3D printed parts (STL files)
-├── t-photos/             ← Team photos
-├── v-photos/             ← Robot photos (6 angles)
-└── video/                ← Video links
+│   ├── esp32/
+│   │   ├── main.cpp
+│   │   ├── motor_control.cpp
+│   │   ├── servo_control.cpp
+│   │   ├── sensors.cpp
+│   │   └── config.h
+│   └── raspberry_pi/
+│       ├── main.py
+│       └── camera.py
+├── images/
+│   ├── car/
+│   └── team/
+└── videos/
 ```
 
 ---
 
-*Last updated: May 2026 | WRO Future Engineers 2026 | Palestine 🇵🇸*
+**Last Updated:** June 2026
+
+**Competition:** WRO Future Engineers 2026
+
+**Team:** NextGen Minds
+
+**Country:** Palestine 🇵🇸
