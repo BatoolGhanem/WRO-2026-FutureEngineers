@@ -42,9 +42,9 @@ Although learning was our main motivation, we were equally determined to build t
   <img src="../images/research/research_planning_01.jpg" width="80%">
 </p>
 
-**Figure 1.** Initial research and planning session.
+**Figure 1.** Research and planning session before selecting the robot architecture.
 
-During this stage, we studied the WRO Future Engineers rules and compared different hardware platforms before selecting the main components of our robot.
+During this stage, we studied the official WRO Future Engineers rules, evaluated different hardware platforms, and compared multiple technical solutions before making any purchasing decisions.
 
 ### Objective
 
@@ -52,6 +52,6 @@ Understand the competition requirements and evaluate possible hardware platforms
 
 ### Outcome
 
-- Defined the robot requirements.
-- Compared different hardware alternatives.
-- Planned the initial robot architecture.
+- Defined the main engineering objectives.
+- Identified the robot's functional requirements.
+- Selected the initial system architecture for future development.
