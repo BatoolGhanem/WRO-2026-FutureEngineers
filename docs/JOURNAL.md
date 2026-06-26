@@ -102,3 +102,51 @@ After completing the chassis assembly, we verified the robot dimensions and meas
 **Figure 4.** Initial mechanical verification.
 
 
+## Phase Summary
+
+The mechanical platform was successfully assembled and verified before integrating the electronic components. At this stage, the robot structure was ready for the next phase, which focused on installing the controllers, sensors, and electrical connections.
+
+# Phase 3 — Electronics Integration
+
+**Period:** June 2026
+
+## Raspberry Pi Evaluation
+
+Before integrating the electronic system, we evaluated the Raspberry Pi 3 Model B as a possible computing platform for future computer vision tasks.
+
+The operating system was installed on a microSD card and the board was powered for the first time. During the initial evaluation, the first Raspberry Pi board showed unstable behavior, which prevented reliable operation. After investigating the issue, the board was replaced and testing continued using another Raspberry Pi 3 Model B.
+
+This experience highlighted the importance of validating hardware before integrating it into the robot and helped us avoid future debugging problems.
+
+## ESP32 Platform Preparation
+
+After evaluating the Raspberry Pi, we prepared the ESP32 development board for sensor integration. An expansion board was used to simplify wiring and improve access to power and communication pins during development.
+
+<p align="center">
+  <img src="../images/electronics/esp32_first_setup.jpg" width="60%">
+</p>
+
+**Figure 7.** Initial ESP32 setup for electronics development.
+
+## Initial Sensor Testing
+
+The development process continued by testing each sensor individually before integrating the complete electronic system.
+
+The MPU6050 IMU and the TCS34725 color sensor were successfully detected and communicated correctly with the ESP32.
+
+The VL53L1X distance sensor was then tested. During this stage, communication issues were encountered while configuring multiple sensors on the same I²C bus. Several software modifications and hardware checks were performed in an attempt to resolve the problem before continuing the integration process.
+
+<p align="center">
+  <img src="../images/electronics/sensor_first_test.jpg" width="65%">
+</p>
+
+**Figure 8.** Initial individual sensor testing using the ESP32.
+
+## Engineering Notes
+
+At the end of this development session, the ESP32 platform had been successfully prepared, the MPU6050 and TCS34725 sensors had been validated, and troubleshooting of the VL53L1X communication issue was still in progress.
+
+Further electronics integration will continue after resolving the I²C communication between the distance sensors.
+
+
+
