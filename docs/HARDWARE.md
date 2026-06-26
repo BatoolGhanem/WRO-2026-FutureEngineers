@@ -143,6 +143,6 @@ The chassis was selected because it provides a stable mechanical platform while 
 
 ## Current Hardware Status
 
-At the current stage of the project, all major hardware components have been selected and assembled except for the final battery solution, which is still under evaluation.
+At this stage, the main hardware components have been selected and evaluated. The mechanical platform has been assembled, while the electronics integration is currently in progress.
 
-The battery will be selected after completing the power consumption analysis to ensure stable operation of the Raspberry Pi, ESP32, sensors, and actuators under full system load.
+The final battery has not yet been selected because the team is calculating the required voltage and current based on the Raspberry Pi, ESP32, sensors, servo, motor driver, and drive motor. Mechanical calculations, including the gearbox ratio, expected torque, and theoretical wheel speed, are also being analyzed to support future design decisions.
