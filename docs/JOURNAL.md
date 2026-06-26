@@ -76,6 +76,10 @@ Before assembling the chassis, we opened the gearbox to inspect the internal gea
 
 **Figure 2.** Internal gearbox inspection before assembly.
 
+During this inspection, we also started analyzing the drivetrain mechanically. The gearbox was opened to understand the internal gear arrangement and prepare for calculating the gear ratio, output torque, and expected wheel speed.
+
+These calculations are important because they help us estimate whether the motor can provide enough torque to move the robot reliably while maintaining an appropriate speed for autonomous navigation.
+
 ---
 
 ## Mechanical Assembly
@@ -123,7 +127,7 @@ This experience highlighted the importance of validating hardware before integra
 After evaluating the Raspberry Pi, we prepared the ESP32 development board for sensor integration. An expansion board was used to simplify wiring and improve access to power and communication pins during development.
 
 <p align="center">
-  <img src="../images/electronics/esp32_first_setup.jpg" width="60%">
+  <img src="../images/electronics/esp32_first_setup.jpeg" width="60%">
 </p>
 
 **Figure 7.** Initial ESP32 setup for electronics development.
@@ -137,7 +141,7 @@ The MPU6050 IMU and the TCS34725 color sensor were successfully detected and com
 The VL53L1X distance sensor was then tested. During this stage, communication issues were encountered while configuring multiple sensors on the same I²C bus. Several software modifications and hardware checks were performed in an attempt to resolve the problem before continuing the integration process.
 
 <p align="center">
-  <img src="../images/electronics/sensor_first_test.jpg" width="65%">
+  <img src="../images/electronics/sensor_first_test.jpeg" width="65%">
 </p>
 
 **Figure 8.** Initial individual sensor testing using the ESP32.
