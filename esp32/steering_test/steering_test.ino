@@ -4,7 +4,6 @@ Servo steeringServo;
 
 #define SERVO_PIN 13
 
-// عدلي هاي القيم حسب معايرة سيارتك
 int CENTER = 70;
 int LEFT = 10;
 int RIGHT = 130;
@@ -13,7 +12,6 @@ void setup() {
 
   steeringServo.attach(SERVO_PIN);
 
-  // بداية: العجلات مستقيمة
   steeringServo.write(CENTER);
 
   delay(1000);
@@ -22,7 +20,6 @@ void setup() {
 
 void loop() {
 
-  // مثال حركة اختبار
   turnLeft();
   delay(1000);
 
@@ -37,7 +34,6 @@ void loop() {
 }
 
 
-// -------- Steering Functions --------
 
 void turnLeft() {
   steeringServo.write(LEFT);
