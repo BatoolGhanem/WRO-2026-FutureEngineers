@@ -1,31 +1,26 @@
-
 # Steering Test
 
 ## Objective
 
-Test the steering mechanism using the MG996R servo motor connected to the ESP32.
+Verify the operation of the steering system using the MG996R servo motor connected to the ESP32.
 
-## Hardware Used
+## Initial Calibration
 
-- ESP32 DevKit V1
-- MG996R Servo Motor
+The first steering angles used were:
 
-## Description
+| Direction | Angle |
+|----------|------:|
+| Left | 50° |
+| Center | 90° |
+| Right | 130° |
 
-This program tests the steering system by moving the servo motor between three predefined positions:
+During testing, the steering was not properly aligned. The wheels did not point straight when the servo was set to 90°, and the left turning angle was insufficient.
 
-- Left
-- Center
-- Right
+## Calibration Process
 
-The test verifies:
+Several steering angles were tested until the steering linkage was correctly aligned.
 
-- Servo operation
-- Steering linkage
-- Steering angle calibration
-- Mechanical alignment
-
-## Servo Angles
+The final calibrated values were:
 
 | Direction | Angle |
 |----------|------:|
@@ -35,11 +30,11 @@ The test verifies:
 
 ## Result
 
-✅ Servo moved correctly.
+✅ Steering movement verified successfully.
 
-✅ Steering linkage worked smoothly.
+✅ Mechanical alignment improved after calibration.
 
-✅ Steering test completed successfully.
+✅ The calibrated values will be used in future software development.
 
 ---
 
