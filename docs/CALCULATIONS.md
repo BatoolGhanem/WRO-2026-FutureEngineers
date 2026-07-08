@@ -84,7 +84,7 @@ The gearbox was carefully disassembled to verify the reduction ratio manually.
 
 Each gear was inspected and the number of teeth was counted individually. This process ensured that the calculated ratio accurately represents the mechanical transmission used in the robot.
 
-![Gearbox Inspection](images/gearbox_open.jpg)
+![Gearbox Inspection](/images/assembly/gearbox_internal.jpg)
 
 **Figure 1.** Gearbox disassembled during manual gear ratio calculation.
 
