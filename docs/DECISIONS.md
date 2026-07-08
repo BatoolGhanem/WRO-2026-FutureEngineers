@@ -96,8 +96,99 @@ Disadvantages
 - Additional UART communication required
 - Slightly more complex software architecture
 
-## Engineering Justification
+---
 
-Separating high-level decision making from low-level control reduces software complexity and minimizes the impact of CPU-intensive image processing on steering and motor response.
+# Decision 2 – Power System Selection
 
-This architecture also makes the project easier to debug, maintain, and extend during future development.
+## Engineering Problem
+
+The robot requires a stable power system capable of supplying multiple electronic devices with different voltage and current requirements.
+
+The Raspberry Pi, ESP32, sensors, servo motor, and DC motor cannot all operate directly from the same voltage without proper power regulation.
+
+Therefore, a reliable and efficient power distribution system was required.
+
+---
+
+## Engineering Requirements
+
+The power system should:
+
+- Provide stable power for all electronic components.
+- Supply sufficient current during peak loads.
+- Support long testing sessions.
+- Be lightweight.
+- Be easy to recharge.
+- Minimize voltage drop.
+- Improve overall system reliability.
+
+---
+
+## Alternatives Evaluated
+
+| Power Source | Advantages | Disadvantages |
+|--------------|------------|---------------|
+| 9V Alkaline Battery | Low cost, widely available | Very low current capability, unsuitable for motors and Raspberry Pi |
+| 18650 Li-ion (2S) | Rechargeable, lightweight, high energy density, easy to replace | Requires protection circuit and charger |
+| LiPo Battery (2S) | High discharge current, lightweight, widely used in robotics | Requires careful charging and handling |
+
+---
+
+## Battery Selection
+
+After evaluating the available options, we selected a **2S Lithium-Ion battery pack (7.4V)**.
+
+This configuration provides sufficient voltage for the motor while allowing the remaining electronics to be powered through a voltage regulator.
+
+The selected battery also provides a good balance between runtime, weight, cost, and availability.
+
+---
+
+## Voltage Regulation
+
+Different components require different supply voltages.
+
+The DC motor operates from the battery voltage through the motor driver.
+
+The Raspberry Pi, ESP32, camera, and sensors require a stable 5V supply.
+
+For this reason, a DC-DC Buck Converter is used to convert the battery voltage into a regulated 5V output.
+
+---
+
+## Alternatives for Voltage Regulation
+
+| Converter | Advantages | Disadvantages |
+|------------|------------|---------------|
+| Linear Voltage Regulator | Simple design | Low efficiency, high heat generation |
+| Boost Converter | Useful when increasing voltage | Cannot reduce battery voltage |
+| DC-DC Buck Converter | High efficiency, low heat, stable output | Slightly higher cost |
+
+---
+
+## Final Decision
+
+The robot will use:
+
+- 2S 7.4V Lithium-Ion Battery
+- DC-DC Buck Converter for regulated 5V
+- Shared common ground between all controllers
+
+This configuration provides stable operation while reducing power losses and improving reliability.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- High efficiency
+- Stable power distribution
+- Long runtime
+- Rechargeable
+- Suitable for future expansion
+
+Disadvantages
+
+- Additional converter required
+- Slightly more complex wiring
