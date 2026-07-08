@@ -866,3 +866,23 @@ Each module has a clearly defined responsibility, improving maintainability and 
 
 - Slightly larger project structure
 - More communication between modules
+
+- ---
+
+# Risk Analysis
+
+During the development of the robot, several potential risks were identified. For each risk, a mitigation strategy was planned to improve the overall reliability and safety of the system.
+
+| Risk | Possible Impact | Mitigation Strategy |
+|------|-----------------|---------------------|
+| Raspberry Pi freezes | Robot stops processing camera images | ESP32 will stop the motor if no command is received within a predefined timeout period. |
+| UART communication failure | Loss of communication between Raspberry Pi and ESP32 | ESP32 enters a safe stop mode until communication is restored. |
+| Low battery voltage | Unstable operation or Raspberry Pi reboot | A regulated 5V buck converter supplies the electronics, and the battery voltage is monitored during testing. |
+| Servo current spikes | Voltage drops affecting other electronics | The servo is powered from a regulated power supply capable of handling peak current. |
+| Camera malfunction | Lane and obstacle detection become unavailable | The robot immediately stops instead of continuing with invalid navigation data. |
+| Distance sensor failure | Incorrect wall distance measurements | Sensor values are validated in software, and unexpected readings are ignored when possible. |
+| Motor driver overheating | Reduced motor performance or shutdown | The motor driver is operated within its rated limits and monitored during testing. |
+
+## Engineering Perspective
+
+Identifying possible failure scenarios before the competition helps improve the reliability, maintainability, and safety of the robot. Risk analysis was considered an important part of the engineering design process rather than an afterthought.
