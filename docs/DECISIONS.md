@@ -689,3 +689,180 @@ Disadvantages
 
 - Requires calibration under different lighting conditions
 - I²C communication requires correct bus configuration
+
+- ---
+
+# Decision 9 – Battery Selection
+
+## Engineering Problem
+
+The robot requires a lightweight and rechargeable power source capable of supplying stable voltage and sufficient current for all electronic components during the competition.
+
+---
+
+## Engineering Requirements
+
+The battery should:
+
+- Supply enough current for the motor and electronics.
+- Provide stable voltage.
+- Be rechargeable.
+- Have good energy density.
+- Be lightweight.
+- Support long operating time.
+
+---
+
+## Alternatives Evaluated
+
+| Battery | Advantages | Disadvantages |
+|---------|------------|---------------|
+| 9V Alkaline Battery | Cheap and easy to find | Very low current capability, unsuitable for robotics |
+| LiPo 2S | High discharge current, lightweight | Requires careful charging and storage |
+| 18650 Li-ion (2S) | Rechargeable, high capacity, widely available, safer handling | Requires battery management and protection |
+
+---
+
+## Final Decision
+
+A 2S Lithium-Ion battery pack was selected because it provides an excellent balance between capacity, weight, operating time, safety, and cost.
+
+The battery voltage is suitable for the drive motor while a DC-DC Buck Converter provides a regulated 5V supply for the Raspberry Pi, ESP32, camera, and sensors.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Rechargeable
+- Lightweight
+- High capacity
+- Stable output voltage
+- Good operating time
+
+Disadvantages
+
+- Requires a charging circuit
+- Requires battery protection
+
+- ---
+
+# Decision 10 – Chassis Selection
+
+## Engineering Problem
+
+The robot requires a rigid chassis capable of supporting all mechanical and electronic components while maintaining accurate steering and stable vehicle dynamics.
+
+---
+
+## Engineering Requirements
+
+The chassis should:
+
+- Be mechanically rigid.
+- Support rear-wheel drive.
+- Provide accurate steering.
+- Be lightweight.
+- Allow easy maintenance.
+- Provide enough space for electronics.
+
+---
+
+## Alternatives Evaluated
+
+| Chassis | Advantages | Disadvantages |
+|---------|------------|---------------|
+| Acrylic Chassis | Lightweight, inexpensive | Lower mechanical strength |
+| 4WD Chassis | Excellent traction | More complex control and unnecessary for this project |
+| Rear-Wheel Drive Metal Chassis | Strong, compact, accurate steering, easy maintenance | Slightly heavier than acrylic |
+
+---
+
+## Final Decision
+
+A rear-wheel-drive metal chassis was selected because it provides a rigid mechanical structure, accurate steering, sufficient installation space, and reliable performance during autonomous navigation.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Strong structure
+- Accurate steering
+- Easy maintenance
+- Good component accessibility
+
+Disadvantages
+
+- Slightly heavier
+- Longer assembly time
+
+- ---
+
+# Decision 11 – Communication Protocol
+
+## Engineering Problem
+
+The Raspberry Pi and ESP32 must exchange navigation commands quickly and reliably during autonomous operation.
+
+---
+
+## Alternatives Evaluated
+
+| Protocol | Advantages | Disadvantages |
+|----------|------------|---------------|
+| I²C | Simple wiring | Master-slave limitations and shared bus complexity |
+| SPI | Very high speed | More wiring and unnecessary for this application |
+| UART | Simple implementation, reliable communication, supported by both controllers | Point-to-point communication only |
+
+---
+
+## Final Decision
+
+UART serial communication was selected because it provides a simple, reliable, and efficient communication channel between the Raspberry Pi and ESP32 while minimizing software complexity.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Reliable
+- Simple implementation
+- Fast enough for control commands
+
+Disadvantages
+
+- Point-to-point communication
+- Limited scalability compared to network protocols
+
+- ---
+
+# Decision 12 – Software Architecture
+
+## Engineering Decision
+
+The software was divided into independent modules instead of implementing a single large program.
+
+This modular architecture improves code readability, simplifies debugging, enables independent testing, and allows future features to be added without affecting the entire project.
+
+Each module has a clearly defined responsibility, improving maintainability and overall software quality.
+
+---
+
+## Advantages
+
+- Modular code
+- Easier debugging
+- Easier testing
+- Better scalability
+- Improved maintainability
+
+---
+
+## Disadvantages
+
+- Slightly larger project structure
+- More communication between modules
