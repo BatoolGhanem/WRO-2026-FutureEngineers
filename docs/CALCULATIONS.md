@@ -1,4 +1,3 @@
-
 # Engineering Calculations
 
 ## Purpose
@@ -62,9 +61,9 @@ This value will later be used to estimate the theoretical vehicle speed.
 
 # 5. Gear Ratio
 
-The gearbox was completely disassembled in order to calculate the reduction ratio manually.
+The gearbox was completely disassembled because the manufacturer did not provide the gearbox reduction ratio.
 
-Each gear stage was counted individually because the manufacturer did not provide the gearbox ratio.
+Each gear stage was inspected manually, and the number of teeth on every gear was counted to calculate the overall reduction ratio.
 
 | Stage | Calculation | Ratio |
 |--------|-------------|------:|
@@ -73,12 +72,32 @@ Each gear stage was counted individually because the manufacturer did not provid
 | Stage 3 | 22 / 10 | 2.20 |
 | Stage 4 | 23 / 10 | 2.30 |
 
-Total Gear Ratio
+Overall Gear Ratio
 
 = 1.83 × 1.67 × 2.20 × 2.30
 
 = **15.44 : 1**
 
-> Note:
->
-> The gearbox was manually disassembled and each gear tooth was counted to determine the total gear reduction ratio. The final value will be verified experimentally during future testing.
+### Gearbox Inspection
+
+The gearbox was carefully disassembled to verify the reduction ratio manually.
+
+Each gear was inspected and the number of teeth was counted individually. This process ensured that the calculated ratio accurately represents the mechanical transmission used in the robot.
+
+![Gearbox Inspection](images/gearbox_open.jpg)
+
+**Figure 1.** Gearbox disassembled during manual gear ratio calculation.
+
+---
+
+## Future Calculations
+
+The following calculations will be added after the electrical system is completed and experimental measurements become available.
+
+- Wheel RPM
+- Estimated Vehicle Speed
+- Motor Torque Estimation
+- Total Power Consumption
+- Battery Capacity Selection
+- Expected Runtime
+- Safety Factor
