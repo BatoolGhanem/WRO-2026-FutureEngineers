@@ -555,3 +555,70 @@ Disadvantages
 
 - I²C address conflict when using multiple sensors
 - More complex software initialization than ultrasonic sensors
+
+- ---
+
+# Decision 8 – Color Sensor Selection
+
+## Engineering Problem
+
+The robot must reliably identify colored objects and field markers under different lighting conditions.
+
+The selected sensor should provide stable color measurements while minimizing the influence of ambient light.
+
+---
+
+## Engineering Requirements
+
+The color sensor should:
+
+- Detect colors accurately.
+- Operate under different lighting conditions.
+- Be compact and lightweight.
+- Be compatible with the ESP32.
+- Consume low power.
+- Provide stable measurements.
+- Be easy to calibrate.
+
+---
+
+## Alternatives Evaluated
+
+| Sensor | Advantages | Disadvantages |
+|--------|------------|---------------|
+| TCRT5000 | Very inexpensive, simple interface | Suitable only for line detection, cannot accurately distinguish colors |
+| Camera-Based Color Detection | High flexibility, detects multiple colors simultaneously | Higher computational load and affected by lighting conditions |
+| TCS34725 Color Sensor | Dedicated RGB sensor, integrated white LED, high accuracy, I²C communication | Requires calibration for different lighting environments |
+
+---
+
+## Final Decision
+
+The TCS34725 color sensor was selected because it provides reliable RGB color measurements while remaining compact and easy to integrate with the ESP32.
+
+Its dedicated color sensing hardware allows accurate color recognition without increasing the computational load on the Raspberry Pi.
+
+---
+
+## Engineering Justification
+
+Separating color detection from computer vision reduces the processing workload on the Raspberry Pi and allows color measurements to be performed independently.
+
+This improves software modularity and enables the Raspberry Pi to dedicate more processing power to lane detection, wall detection, and navigation.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Accurate RGB measurements
+- Compact design
+- Low power consumption
+- Easy integration with ESP32
+- Fast measurements
+
+Disadvantages
+
+- Requires calibration under different lighting conditions
+- I²C communication requires correct bus configuration
