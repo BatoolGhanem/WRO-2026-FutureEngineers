@@ -192,3 +192,71 @@ Disadvantages
 
 - Additional converter required
 - Slightly more complex wiring
+- ---
+
+# Decision 3 – Motor Driver Selection
+
+## Engineering Problem
+
+The DC motor requires a dedicated driver capable of controlling both speed and direction while safely handling the motor current.
+
+The motor driver must also interface easily with the ESP32 and operate reliably throughout long testing sessions.
+
+---
+
+## Engineering Requirements
+
+The motor driver should:
+
+- Support bidirectional motor control.
+- Operate from the selected battery voltage.
+- Be compatible with ESP32 logic levels.
+- Provide stable operation.
+- Be easy to replace if future upgrades become necessary.
+- Have sufficient current capability.
+
+---
+
+## Alternatives Evaluated
+
+| Driver | Advantages | Disadvantages |
+|--------|------------|---------------|
+| L9110S | Small, inexpensive, simple wiring | Low current capability, unsuitable for larger DC motors |
+| TB6612FNG | High efficiency, low voltage drop, compact size | Slightly more expensive and less available locally |
+| BTS7960 | Very high current capability, excellent efficiency | Larger than required for our current motor |
+| L298N | Widely available, inexpensive, simple to use, well documented | Lower efficiency and noticeable voltage drop |
+
+---
+
+## Final Decision
+
+The current prototype uses the **L298N motor driver**.
+
+The main reasons for selecting this driver were its availability, ease of integration, extensive documentation, and compatibility with our motor and battery configuration.
+
+Although newer drivers provide higher efficiency, the L298N was considered sufficient during the development stage and allowed rapid hardware integration and software testing.
+
+---
+
+## Future Improvements
+
+Future versions of the robot may replace the L298N with a more efficient motor driver such as the TB6612FNG.
+
+This would reduce voltage loss, improve motor efficiency, decrease heat generation, and increase the available voltage at the motor terminals.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Easy to obtain.
+- Simple software interface.
+- Large amount of educational documentation.
+- Reliable during development.
+
+Disadvantages
+
+- Higher voltage drop than modern MOSFET drivers.
+- Lower electrical efficiency.
+- Generates more heat under higher loads.
