@@ -402,3 +402,74 @@ Disadvantages
 - Lower maximum speed than direct-drive motors
 - Slightly higher weight
 - Gearbox introduces small mechanical losses
+
+- ---
+
+# Decision 6 – Camera Selection
+
+## Engineering Problem
+
+The robot relies on computer vision to detect lanes, walls, colored objects, and obstacles.
+
+The selected camera must provide reliable image quality while maintaining low latency to support real-time autonomous navigation.
+
+---
+
+## Engineering Requirements
+
+The camera should:
+
+- Be compatible with the Raspberry Pi.
+- Produce stable image quality.
+- Support OpenCV.
+- Operate with low latency.
+- Be lightweight.
+- Be mechanically easy to mount.
+- Consume low power.
+
+---
+
+## Alternatives Evaluated
+
+| Camera | Advantages | Disadvantages |
+|--------|------------|---------------|
+| USB Webcam | Easy to connect, inexpensive, widely available | Higher latency, larger size, increased USB bandwidth usage |
+| Smartphone Camera | Excellent image quality | Difficult integration, unstable connection, unsuitable for autonomous robotics |
+| Raspberry Pi Camera Module | Native CSI interface, low latency, compact size, excellent OpenCV compatibility | Slightly higher cost than entry-level USB cameras |
+
+---
+
+## Final Decision
+
+The Raspberry Pi Camera Module was selected because it communicates directly through the Raspberry Pi CSI interface.
+
+This provides lower latency, higher stability, and better integration with OpenCV compared to standard USB webcams.
+
+The compact size also simplifies mechanical installation while reducing additional cable management.
+
+---
+
+## Engineering Justification
+
+Computer vision is the most important sensing system in our robot.
+
+Reducing image latency improves steering response, lane detection accuracy, and overall navigation performance.
+
+The Raspberry Pi Camera Module provides direct hardware integration with the Raspberry Pi, allowing image acquisition without unnecessary USB communication overhead.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- Low latency
+- Compact design
+- Excellent Raspberry Pi compatibility
+- Reliable OpenCV support
+- Low power consumption
+
+Disadvantages
+
+- Requires CSI ribbon cable
+- Dedicated to Raspberry Pi systems
