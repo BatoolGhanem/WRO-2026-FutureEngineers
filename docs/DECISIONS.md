@@ -473,3 +473,85 @@ Disadvantages
 
 - Requires CSI ribbon cable
 - Dedicated to Raspberry Pi systems
+- ---
+
+# Decision 7 – Distance Sensor Selection
+
+## Engineering Problem
+
+The robot requires reliable distance measurements to detect walls, maintain a safe distance, and assist autonomous navigation during the competition.
+
+The selected sensor should provide accurate measurements while remaining compact and easy to integrate into the robot.
+
+---
+
+## Engineering Requirements
+
+The distance sensor should:
+
+- Provide accurate distance measurements.
+- Have fast response time.
+- Be compact.
+- Consume low power.
+- Be compatible with the ESP32.
+- Operate reliably indoors.
+- Support continuous measurements.
+
+---
+
+## Alternatives Evaluated
+
+| Sensor | Advantages | Disadvantages |
+|--------|------------|---------------|
+| HC-SR04 Ultrasonic | Very inexpensive, easy to use, widely available | Lower accuracy, wider detection angle, affected by surface reflections |
+| Sharp IR Distance Sensor | Simple interface, compact size | Lower accuracy at longer distances, affected by object color |
+| VL53L0X Time-of-Flight | Laser-based measurement, high accuracy, compact size, fast response | Default I²C address conflict when multiple sensors are connected |
+
+---
+
+## Final Decision
+
+The VL53L0X Time-of-Flight sensor was selected because it provides significantly higher accuracy and faster response than traditional ultrasonic sensors.
+
+Its compact size and laser-based distance measurement make it well suited for precise wall detection during autonomous driving.
+
+---
+
+## Engineering Justification
+
+Reliable wall detection is essential for maintaining vehicle position and avoiding collisions.
+
+Compared to ultrasonic sensors, the VL53L0X offers more stable measurements and is less affected by surrounding objects or irregular wall surfaces.
+
+This improves navigation accuracy during the competition.
+
+---
+
+## Engineering Challenges
+
+During development, both VL53L0X sensors initially shared the same default I²C address.
+
+This prevented both sensors from operating simultaneously on the same I²C bus.
+
+Several software solutions were investigated, including changing the sensor address during startup.
+
+Although one sensor operated correctly, additional debugging was required before both sensors could be used simultaneously.
+
+This challenge and the attempted solutions were documented as part of the engineering development process.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- High measurement accuracy
+- Fast response time
+- Compact design
+- Low power consumption
+- Excellent wall detection performance
+
+Disadvantages
+
+- I²C address conflict when using multiple sensors
+- More complex software initialization than ultrasonic sensors
