@@ -329,3 +329,76 @@ Disadvantages
 - Higher current consumption
 - Heavier than micro servos
 - Larger physical dimensions
+- ---
+
+# Decision 5 – DC Motor Selection
+
+## Engineering Problem
+
+The robot requires a DC gear motor capable of moving the vehicle smoothly while providing sufficient torque for acceleration, turning, and obstacle avoidance.
+
+The selected motor should maintain stable performance throughout the competition without excessive power consumption.
+
+---
+
+## Engineering Requirements
+
+The motor should:
+
+- Produce sufficient torque.
+- Maintain stable speed.
+- Fit inside the chassis.
+- Be mechanically reliable.
+- Operate from the selected battery.
+- Be compatible with the selected motor driver.
+- Support long operating periods.
+
+---
+
+## Alternatives Evaluated
+
+| Motor | Advantages | Disadvantages |
+|--------|------------|---------------|
+| TT Gear Motor | Very inexpensive, easy to obtain | Plastic gearbox, lower precision, lower durability |
+| N20 Gear Motor | Compact size, good precision | Lower torque for this chassis |
+| RS380 Motor | Higher speed, larger power | Larger size, requires different mounting system |
+| JGA25-370 Gear Motor | Metal gearbox, compact design, suitable torque, reliable performance | Slightly heavier than smaller motors |
+
+---
+
+## Final Decision
+
+The JGA25-370 geared DC motor was selected because it provides a good balance between torque, size, efficiency, reliability, and compatibility with the selected chassis.
+
+Its integrated metal gearbox produces sufficient torque for autonomous navigation while maintaining a compact mechanical design.
+
+The selected motor also fits directly into the chassis without requiring additional mechanical modifications.
+
+---
+
+## Engineering Justification
+
+The project requires accurate low-speed movement rather than maximum speed.
+
+A geared motor provides higher torque at lower wheel speeds, improving vehicle stability during steering, obstacle avoidance, and cornering.
+
+The gearbox reduction ratio also reduces the mechanical load on the motor, improving efficiency and controllability.
+
+---
+
+## Trade-offs
+
+Advantages
+
+- High torque
+- Metal gearbox
+- Compact construction
+- Reliable operation
+- Easy installation
+- Good compatibility with the chassis
+
+Disadvantages
+
+- Lower maximum speed than direct-drive motors
+- Slightly higher weight
+- Gearbox introduces small mechanical losses
