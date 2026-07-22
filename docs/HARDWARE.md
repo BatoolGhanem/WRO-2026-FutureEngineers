@@ -1362,6 +1362,30 @@ The attribution record should be completed using the following format:
 | Local file | `L298N Holder ORP.stl` |
 
 ---
+# MPU6050 Enclosure
+
+The MPU6050 is installed inside a downloaded protective enclosure.
+
+## Files
+
+TOP.3mf
+
+Bottom.3mf
+
+## Purpose
+
+- Protects the MPU6050
+- Keeps the sensor securely mounted
+- Helps maintain consistent orientation
+- Simplifies installation and maintenance
+
+## Attribution
+
+The original model was downloaded from Printables.
+
+The team does not claim authorship of this enclosure.
+
+---
 
 # XL4015 Buck Converter Enclosure
 
@@ -1453,30 +1477,13 @@ A recommended directory structure is:
 ```text
 cad/
 ├── custom/
-│   ├── main.step
-│   ├── TOP.3mf
-│   ├── Bottom.3mf
-│   └── README.md
+│   └── main.step
 │
-├── third-party/
-│   ├── raspberry-pi-case/
-│   │   ├── model-files/
-│   │   └── ATTRIBUTION.md
-|   |
-│   ├── l298n-holder/
-│   │   ├── L298N-Holder-ORP.stl
-│   │   └── ATTRIBUTION.md
-│   │
-│   ├── xl4015-enclosure/
-│   │   ├── XL4015-Box-P1.3mf
-│   │   ├── XL4015-Box-P2-v2.3mf
-│   │   └── ATTRIBUTION.md
-│   │
-│   └── tcs34725-cover/
-│       ├── TCS34725-cover-light-detection.stl
-│       └── ATTRIBUTION.md
-│
-└── README.md
+├── raspberry_case/
+├── l298n_holder/
+├── xl4015_box/
+├── mpu6050_enclosure/
+└── tcs34725_cover/
 ```
 
 This structure makes the distinction between custom and external work immediately visible.
