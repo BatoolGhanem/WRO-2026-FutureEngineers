@@ -1345,22 +1345,19 @@ The holder provides:
 - Improved wiring organization
 - Easier installation and removal
 
-## Source Status
-
-The exact original source, designer name, model page, and license must be recorded before the repository is finalized.
-
-Until the original source is confirmed, the repository must not claim that this holder was designed by the team.
-
-The attribution record should be completed using the following format:
+## Source
 
 | Field | Information |
 |---|---|
-| Platform | To be confirmed |
-| Designer | To be confirmed |
-| Model page | To be confirmed |
-| License | To be confirmed |
-| Local file | `L298N Holder ORP.stl` |
+| Platform | Printables |
+| Designer | ORP |
+| Model Page | https://www.printables.com/model/832765-l298n-motor-driver-holder-orp |
+| License | See the original Printables page |
+| Local File | `L298N Holder ORP.stl` |
 
+The original model was created by **ORP** and downloaded from **Printables**.
+
+The team does not claim authorship of this holder.
 ---
 # MPU6050 Enclosure
 
@@ -1378,10 +1375,17 @@ Bottom.3mf
 - Keeps the sensor securely mounted
 - Helps maintain consistent orientation
 - Simplifies installation and maintenance
+- 
+## Source
 
-## Attribution
+| Field | Information |
+|---|---|
+| Platform | Printables |
+| Model Page | https://www.printables.com/model/936662-mpu6050-case |
+| License | See the original Printables page |
+| Local Files | `TOP.3mf`, `Bottom.3mf` |
 
-The original model was downloaded from Printables.
+The original enclosure was downloaded from **Printables**.
 
 The team does not claim authorship of this enclosure.
 
@@ -1411,17 +1415,16 @@ The enclosure provides:
 
 The enclosure must not block airflow around the converter.
 
-## Source Status
-
-The exact original source, designer, model page, and license must be confirmed before final publication.
+## Source
 
 | Field | Information |
 |---|---|
-| Platform | To be confirmed |
-| Designer | To be confirmed |
-| Model page | To be confirmed |
-| License | To be confirmed |
-| Local files | `XL4015_Box_P1.3MF`, `XL4015_Box_P2_v2.3MF` |
+| Platform | Printables |
+| Model Page | https://www.printables.com/model/253217-xl4015-buck-dc-to-dc-converter-box |
+| License | See the original Printables page |
+| Local Files | `XL4015_Box_P1.3MF`, `XL4015_Box_P2_v2.3MF` |
+
+The original enclosure was downloaded from **Printables**.
 
 The team does not claim authorship of this enclosure.
 
@@ -1452,20 +1455,18 @@ The cover does not eliminate the need for software calibration.
 
 Color thresholds must still be measured under actual track conditions.
 
-## Source Status
-
-The exact source and license must be confirmed before the repository is finalized.
+## Source
 
 | Field | Information |
 |---|---|
-| Platform | To be confirmed |
-| Designer | To be confirmed |
-| Model page | To be confirmed |
-| License | To be confirmed |
-| Local file | `TCS34725 cover light detection.stl` |
+| Platform | Printables |
+| Model Page | https://www.printables.com/model/1148137-tcs34725-cover-light-detection |
+| License | See the original Printables page |
+| Local File | `TCS34725 cover light detection.stl` |
+
+The original model was downloaded from **Printables**.
 
 The team does not claim authorship of this cover.
-
 ---
 
 # CAD Directory Organization
@@ -1531,15 +1532,6 @@ If no modification was made, write:
 
 No geometric modifications were made to the original model.
 ```
-
-For models whose sources are not yet confirmed, the attribution file should clearly state:
-
-```md
-The original source and license are currently being verified.
-This model is not claimed as original team work.
-```
-
-A model with an unknown license should not be publicly redistributed until its license is confirmed.
 
 ---
 
