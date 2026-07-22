@@ -1023,42 +1023,6 @@ The upper layer had to satisfy several requirements:
 
 ---
 
-# Custom CAD Files
-
-The main custom CAD files are:
-
-```text
-main.step
-TOP.3mf
-Bottom.3mf
-```
-
-## STEP File
-
-The STEP format is retained because it stores editable three-dimensional geometry and is useful for:
-
-- Reviewing the design
-- Future modification
-- Compatibility with CAD software
-- Dimensional inspection
-- Manufacturing preparation
-
-## 3MF Files
-
-The 3MF files are used because they can preserve more manufacturing information than basic STL files.
-
-Depending on the software used, a 3MF file may contain:
-
-- Model geometry
-- Units
-- Part orientation
-- Multiple bodies
-- Print settings
-- Object arrangement
-
-The original editable and printable files should both be preserved in the repository.
-
----
 
 # Weight Distribution
 
@@ -1278,25 +1242,33 @@ Therefore:
 - Zoo assisted with creating the digital CAD model.
 - The resulting model was printed and physically tested by the team.
 
-## Custom CAD Files
+# Custom CAD Files
 
-The custom third-layer files include:
+The custom third-layer CAD model is provided below together with the original manufacturing files used for 3D printing.
 
-```text
-main.step
-TOP.3mf
-Bottom.3mf
-```
+<p align="center">
+  <img src="../images/cad/isometric.png" alt="Custom Third Layer Isometric View" width="650">
+</p>
 
-These files represent the main custom mechanical contribution of the project.
+<p align="center">
+  <em>Figure 1. Isometric view of the custom-designed third layer.</em>
+</p>
 
-## Design Ownership Statement
+## CAD Files
 
-The team does not claim that the CAD geometry was manually modeled entirely from the beginning using traditional CAD commands.
+- [main.step](../cad/custom/main.step)
+- [TOP.3mf](../cad/custom/TOP.3mf)
+- [Bottom.3mf](../cad/custom/Bottom.3mf)
 
-Instead, the team defined the dimensions, mechanical requirements, layout, and constraints, while Zoo was used as a CAD-generation tool.
+## STEP File
 
-This workflow allowed the team to transform measured engineering requirements into a printable mechanical structure.
+The STEP file preserves the editable three-dimensional geometry of the custom part. It allows future modifications, dimensional inspection, compatibility with CAD software, and manufacturing preparation.
+
+## 3MF Files
+
+The 3MF files are the printable versions of the custom part used during manufacturing. Depending on the slicing software, they may preserve model geometry, units, print orientation, object arrangement, and other print-related settings.
+
+Both the editable CAD model and the printable files are included in the repository for documentation and reproducibility.
 
 ---
 
@@ -1353,40 +1325,6 @@ The team does not claim authorship of this case.
 
 ---
 
-# VL53L1X ToF Sensor Flush Mount
-
-A third-party flush mount is used to support the VL53L1X distance sensor.
-
-## File Source
-
-| Field | Information |
-|---|---|
-| Platform | Thingiverse |
-| Designer | protegepower |
-| Thing Number | 6535906 |
-| License | Creative Commons Attribution-ShareAlike |
-| Purpose | Flush mounting of a VL53L1X/TOF400C sensor board |
-
-## Reason for Use
-
-The holder helps:
-
-- Keep the sensor fixed
-- Maintain a repeatable measurement direction
-- Protect the sensor board
-- Reduce unwanted sensor movement
-- Simplify installation
-- Keep the sensor face clear of surrounding parts
-
-## Attribution
-
-The original model was created by **protegepower** and published on Thingiverse as **Thing 6535906** under a **Creative Commons Attribution-ShareAlike license**.
-
-The team does not claim authorship of this mount.
-
-Any redistributed modified version must follow the requirements of the original license.
-
----
 
 # L298N Motor Driver Holder
 
@@ -1525,11 +1463,7 @@ cad/
 │   ├── raspberry-pi-case/
 │   │   ├── model-files/
 │   │   └── ATTRIBUTION.md
-│   │
-│   ├── vl53l1x-mount/
-│   │   ├── model-files/
-│   │   └── ATTRIBUTION.md
-│   │
+|   |
 │   ├── l298n-holder/
 │   │   ├── L298N-Holder-ORP.stl
 │   │   └── ATTRIBUTION.md
