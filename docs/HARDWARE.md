@@ -1257,8 +1257,7 @@ The custom third-layer CAD model is provided below together with the original ma
 ## CAD Files
 
 - [main.step](../cad/custom/main.step)
-- [TOP.3mf](../cad/custom/TOP.3mf)
-- [Bottom.3mf](../cad/custom/Bottom.3mf)
+
 
 ## STEP File
 
