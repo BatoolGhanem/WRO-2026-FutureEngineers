@@ -18,7 +18,7 @@ Our team combines embedded systems, computer vision, and software engineering to
 
 | Batool Ghanem | Sara Abuarra |
 |:-------------:|:------------:|
-| <img src="../images/team/Batool_WRO.jpg" width="220"> | <img src="../images/team/sara_WRO.jpg" width="220"> |
+| <img src="../images/team/Batool_WRO.jpg" width="220"> | <img src="../images/team/Sara_WRO.jpg" width="220"> |
 | **Computer Vision**<br>Raspberry Pi Software<br>Documentation | **Embedded Systems**<br>ESP32 Firmware<br>Electronics Integration |
 
 ---
