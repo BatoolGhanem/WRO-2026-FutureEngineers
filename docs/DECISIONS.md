@@ -505,13 +505,13 @@ The distance sensor should:
 |--------|------------|---------------|
 | HC-SR04 Ultrasonic | Very inexpensive, easy to use, widely available | Lower accuracy, wider detection angle, affected by surface reflections |
 | Sharp IR Distance Sensor | Simple interface, compact size | Lower accuracy at longer distances, affected by object color |
-| VL53L0X Time-of-Flight | Laser-based measurement, high accuracy, compact size, fast response | Default I²C address conflict when multiple sensors are connected |
+| VL53L1X Time-of-Flight | Laser-based measurement, high accuracy, compact size, fast response | Default I²C address conflict when multiple sensors are connected |
 
 ---
 
 ## Final Decision
 
-The VL53L0X Time-of-Flight sensor was selected because it provides significantly higher accuracy and faster response than traditional ultrasonic sensors.
+The VL53L1X Time-of-Flight sensor was selected because it provides significantly higher accuracy and faster response than traditional ultrasonic sensors.
 
 Its compact size and laser-based distance measurement make it well suited for precise wall detection during autonomous driving.
 
@@ -521,7 +521,7 @@ Its compact size and laser-based distance measurement make it well suited for pr
 
 Reliable wall detection is essential for maintaining vehicle position and avoiding collisions.
 
-Compared to ultrasonic sensors, the VL53L0X offers more stable measurements and is less affected by surrounding objects or irregular wall surfaces.
+Compared to ultrasonic sensors, the VL53L1X offers more stable measurements and is less affected by surrounding objects or irregular wall surfaces.
 
 This improves navigation accuracy during the competition.
 
@@ -529,7 +529,7 @@ This improves navigation accuracy during the competition.
 
 ## Engineering Challenges
 
-During development, both VL53L0X sensors initially shared the same default I²C address.
+During development, both VL53L1X sensors initially shared the same default I²C address.
 
 This prevented both sensors from operating simultaneously on the same I²C bus.
 
