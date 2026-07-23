@@ -8,7 +8,7 @@ Two independent I²C buses are used in the system. The first bus (GPIO21 SDA, GP
 
 The complete electrical architecture of the robot is illustrated below.
 
-![Electrical Wiring Diagram](images/electronics/wiring.png)
+![Electrical Wiring Diagram](../images/electronics/wiring.png)
 
 **Figure 1.** Electrical wiring and communication architecture of the robot.
 
