@@ -449,9 +449,9 @@ The reasoning behind every major decision is documented in:
 |------|------|
 | ![](images/car/left.jpg) | ![](images/car/right.jpg) |
 
-| Top | Electronics |
+| Top | Bottom |
 |------|------|
-| ![](images/car/top.jpg) | ![](images/car/electronics.jpg) |
+| ![](images/car/top.jpg) |![](images/car/bottom.jpg) |
 
 ---
 
