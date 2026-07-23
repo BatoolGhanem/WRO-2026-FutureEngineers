@@ -67,12 +67,16 @@ The robot is designed to complete both official challenges:
 
 # Team
 
-## NextGen Minds
+<p align="center">
+<img src="images/team/team_WRO.jpg" width="700">
+</p>
 
-| Member | Responsibility |
-|---------|----------------|
-| Batool Ghanem | Computer Vision, Raspberry Pi Software, Documentation |
-| Sara Abuarra | ESP32 Firmware, Electronics Integration, Embedded Systems |
+We are **NextGen Minds**, a team of second-year Computer Engineering students from Birzeit University representing Palestine in the WRO Future Engineers 2026 competition.
+
+For detailed information about our team members and responsibilities, see:
+
+📄 **[TEAM.md](docs/TEAM.md)**
+
 
 **Coach**
 
