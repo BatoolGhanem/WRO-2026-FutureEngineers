@@ -454,7 +454,7 @@ The reasoning behind every major decision is documented in:
 ## Team
 
 <p align="center">
-<img src="images/team/team.jpg" width="600">
+<img src="images/team/team_WRO.jpg" width="700">
 </p>
 
 ---
