@@ -1,351 +1,631 @@
-# 🏎️ WRO 2026 — Future Engineers
-## Team NextGen Minds | Palestine 🇵🇸
+<div align="center">
 
-> An autonomous self-driving vehicle for WRO Future Engineers 2026,
-> powered by Multi-Sensor Fusion and real-time embedded control.
+# 🏎️ WRO Future Engineers 2026
 
----
+## NextGen Minds 🇵🇸
 
-## 📋 Table of Contents
+### Birzeit University — Palestine
 
-- [Our Story](#our-story)
-- [Team](#team)
-- [Robot Overview](#robot-overview)
-- [Hardware](#hardware)
-- [Software](#software)
-- [Open Challenge](#open-challenge)
-- [Obstacle Challenge](#obstacle-challenge)
-- [Gallery](#gallery)
-- [Videos](#videos)
-- [Engineering Journal](#engineering-journal)
+Autonomous Ackermann Steering Robot for the **World Robot Olympiad (WRO) Future Engineers 2026** competition.
+
+<p>
+<img src="images/car/final_robot.jpg" width="700">
+</p>
 
 ---
 
-## 📖 Our Story
+![Platform](https://img.shields.io/badge/Platform-ESP32%20%2B%20Raspberry%20Pi-blue)
+![Language](https://img.shields.io/badge/C%2B%2B-ESP32-orange)
+![Python](https://img.shields.io/badge/Python-Raspberry%20Pi-green)
+![Competition](https://img.shields.io/badge/WRO-Future%20Engineers-red)
+![Country](https://img.shields.io/badge/Palestine-🇵🇸-black)
 
-We are **Computer Engineering students at Birzeit University, Year 2**.
-When we first heard about WRO Future Engineers, we had no idea what it was.
-We started by researching the competition, reading the rules, and learning
-what a self-driving car actually needs.
-
-### Phase 1: Learning & Planning (May 2026)
-
-#### Day 1 — Discovering the Competition
-- First team meeting with our coach
-- Studied WRO 2026 rules together
-- Learned about the two challenges: Open Challenge and Obstacle Challenge
-- Researched what other teams use (Arduino, Raspberry Pi, ESP32)
-
-#### Day 2 — Dividing Responsibilities
-- **Batool:** Python & Computer Vision → Raspberry Pi
-- **Sara:** C++ & Embedded Systems → ESP32
-- Why this split? Batool has Python background, Sara has C++ background
-
-#### Day 3 — Choosing Components
-- Originally considered Arduino → switched to ESP32 (lighter, no breadboard needed)
-- Considered custom 3D-printed chassis → bought ready-made RC Ackermann kit (saves time, better wheels)
-- Chose sensors:
-  - VL53L1X (ToF)
-  - MPU-6050 (IMU)
-  - TCS34725 (Color Sensor)
-- Decided:
-  - Phase 1 = Open Challenge with ESP32 only
-  - Phase 2 = Add Raspberry Pi + Camera
-
-#### Day 4 — Shopping
-- Purchased all components from local electronics store
-- Key decisions:
-  - MPU-6050 instead of BNO085
-  - Open Challenge first
-  - Raspberry Pi integration later
-
-#### Day 5 — Chassis Assembly
-- Assembled RC Ackermann kit
-- Disassembled gearbox to inspect gear ratio
-- Measured dimensions using caliper
-- Chassis weight: **499g**
-- Chassis width: **147mm**
-
-#### Day 6 — Simulation & Safety
-- Started sensor simulation before wiring
-- Verified ESP32 communication with sensors
-- Raspberry Pi 3B+ became available
-- Confirmed suitability with professors
-
-### Current Status
-✅ Hardware acquired  
-✅ Chassis assembled  
-✅ Software architecture planned  
-🔄 Wiring and firmware development in progress
+</div>
 
 ---
 
-## 👥 Team
+# Overview
 
-| Name | Role | Background |
-|------|------|------------|
-| Batool Ghanem | Software — Python & Computer Vision | Computer Engineering, Year 2 |
-| Sara Abuarra | Hardware & Firmware — C++ & ESP32 | Computer Engineering, Year 2 |
+This repository documents the complete development of our autonomous vehicle for the **WRO Future Engineers 2026** competition.
 
-**Coach:** Osid Ali
+Rather than presenting only the final robot, this repository documents the complete engineering journey—from the first design discussions and component selection to mechanical assembly, electronics integration, software development, testing, calibration, and continuous improvement.
 
-**Institution:** Birzeit University
-
-**Country:** Palestine 🇵🇸
+The robot is built on an Ackermann steering chassis and combines real-time embedded control using an ESP32 with higher-level vision processing on a Raspberry Pi.
 
 ---
 
-## 🤖 Robot Overview
+# Robot Highlights
 
-A self-driving RC car built on an Ackermann chassis, controlled by
-an ESP32 microcontroller for real-time sensor fusion and motor control.
-
-A Raspberry Pi 3B+ handles higher-level processing for the Obstacle Challenge.
-
-### Specifications
-
-| Spec | Value |
-|------|-------|
-| Chassis Width | 147 mm |
-| Chassis Weight | 499 g |
-| Total Weight | ~688 g |
-| Weight Limit | 1500 g |
-| Margin | ~812 g ✅ |
+- Ackermann steering vehicle
+- Rear-wheel drive
+- ESP32 real-time controller
+- Raspberry Pi vision processor
+- Dual VL53L1X Time-of-Flight sensors
+- MPU6050 inertial measurement unit
+- TCS34725 color sensor
+- Raspberry Pi Camera
+- Modular hardware architecture
+- UART communication between controllers
+- Fully documented engineering process
 
 ---
 
-## 🔧 Hardware
+# Competition
 
-### Components List
+**Competition:** World Robot Olympiad (WRO)
 
-| Component | Model | Weight | Function |
-|-----------|-------|--------|----------|
-| Main Processor | Raspberry Pi 3B+ | ~50g | Higher-level processing |
-| Motion Controller | ESP32 DevKit V1 | 9g | Motor & sensor control |
-| Steering Servo | MG996R | ~55g | Front wheel steering |
-| Drive Motor | DC Gear Motor | ~30g | Vehicle propulsion |
-| Motor Driver | L298N | 24g | Motor power control |
-| IMU | MPU-6050 | ~2g | Rotation & heading |
-| Distance Sensors | VL53L1X × 2 | ~2g each | Wall following |
-| Color Sensor | TCS34725 | ~1g | Line detection |
-| Step-down Converter | XL6009E1 | 11g | Voltage regulation |
-| Chassis | RC Ackermann Kit | 499g | Robot frame |
-| Battery | LiPo 2S | 33g | Power source |
+**Category:** Future Engineers
 
-### Wiring Diagram
+**Season:** 2026
 
-```text
-Battery (LiPo)
-├──→ L298N ──→ DC Motor
-├──→ XL6009E1 ──→ Raspberry Pi 3B+
-│                   └──→ ESP32 (UART)
-└──→ ESP32
-     ├──→ MG996R Servo
-     ├──→ MPU-6050
-     ├──→ VL53L1X Left
-     ├──→ VL53L1X Right
-     ├──→ TCS34725
-     └──→ L298N Control Pins
-```
+The robot is designed to complete both official challenges:
 
-### Layer Design
-
-```text
-Layer 2 (Top)
-├── Raspberry Pi 3B+
-└── Camera Module
-
-Layer 1
-├── ESP32
-├── MPU-6050
-└── XL6009E1
-
-Layer 0 (Base)
-├── Chassis
-├── L298N
-├── DC Motor
-├── MG996R Servo
-└── Wheels
-```
+- Open Challenge
+- Obstacle Challenge
 
 ---
 
-## 💻 Software
+# Team
 
-### Architecture
+## NextGen Minds
 
-```text
-Raspberry Pi (Python)          ESP32 (C++)
-─────────────────────          ───────────
+| Member | Responsibility |
+|---------|----------------|
+| Batool Ghanem | Computer Vision, Raspberry Pi Software, Documentation |
+| Sara Abuarra | ESP32 Firmware, Electronics Integration, Embedded Systems |
 
-camera_vision.py      ←──→     motor_control.cpp
-obstacle_detect.py    ←──→     servo_control.cpp
-path_planning.py      ←──→     imu_reader.cpp
+**Coach**
 
-                               tof_sensors.cpp
-                               color_detection.cpp
-                               lap_counter.cpp
-```
+Osid Ali
 
-### Core Algorithm
+**Institution**
 
-```cpp
-while (lapCount < 3)
-{
-    String color = getColor();
+Birzeit University
 
-    if (color == "ORANGE" || color == "BLUE")
-    {
-        detectDirection(color);
-        turn90degrees();
-        lapCount += 0.25;
-    }
-    else
-    {
-        int error = tofLeft - tofRight;
-        int steer = error * Kp;
+**Country**
 
-        setMotor(BASE_SPEED, steer);
-    }
-}
-```
-
-### Dependencies
-
-#### ESP32 Arduino Framework
-
-```text
-Wire.h
-ESP32Servo
-Adafruit_VL53L1X
-MPU6050
-Adafruit_TCS34725
-```
+Palestine 🇵🇸
 
 ---
 
-## 🏁 Open Challenge
+# Robot Architecture
 
-### Strategy
+The robot follows a distributed architecture where each controller has a dedicated responsibility.
 
-The robot completes three autonomous laps.
+| Controller | Responsibilities |
+|------------|------------------|
+| Raspberry Pi 3 Model B | Computer vision, obstacle detection, navigation logic |
+| ESP32 DevKit V1 | Motor control, steering, sensor acquisition, real-time control |
 
-#### Straight Sections
-- Dual ToF sensors maintain equal distance from both walls.
+Communication between both controllers is performed using UART serial communication.
 
-#### Corner Detection
-- Color sensor detects track markers.
-
-#### Turning
-- MPU-6050 performs accurate 90° turns.
-
-#### Lap Counting
-- 4 turns = 1 lap
-- 12 turns = finish
-
-### Results
-
-| Attempt | Time | Errors | Notes |
-|----------|------|---------|-------|
-| Run 1 | Pending | Pending | Pending |
-| Run 2 | Pending | Pending | Pending |
-| Run 3 | Pending | Pending | Pending |
+This architecture separates computationally intensive vision algorithms from deterministic real-time vehicle control, resulting in a more reliable and modular system.
 
 ---
 
-## 🚧 Obstacle Challenge
+# Robot Specifications
 
-### Status
-Phase 2 — Under Development
-
-### Planned Hardware
-- Raspberry Pi 3B+
-- Camera Module
-
-### Planned Software
-- Python
-- OpenCV
-
-### Features
-- Red/Green pillar detection
-- Obstacle avoidance
-- Path planning
-- Autonomous parking
+| Parameter | Value |
+|-----------|------:|
+| Steering | Ackermann |
+| Drive | Rear-Wheel Drive |
+| Main Controller | ESP32 DevKit V1 |
+| Vision Processor | Raspberry Pi 3 Model B |
+| Camera | Raspberry Pi Camera |
+| Motor Driver | L298N |
+| Steering Servo | MG996R |
+| Distance Sensors | 2 × VL53L1X |
+| IMU | MPU6050 |
+| Color Sensor | TCS34725 |
+| Power System | 2S Li-ion Battery + XL4015 Buck Converter |
 
 ---
 
-## 📸 Gallery
-
-### Robot Photos
-
-| Front | Back | Right |
-|--------|--------|--------|
-| Pending | Pending | Pending |
-
-| Left | Top | Bottom |
-|--------|--------|--------|
-| Pending | Pending | Pending |
-
-### Team Photo
-
-Pending
-
----
-
-## 🎥 Videos
-
-| Challenge | Link |
-|------------|------------|
-| Open Challenge | Coming Soon |
-| Obstacle Challenge | Coming Soon |
-
----
-
-## 📖 Engineering Journal
-
-See:
-
-```text
-docs/JOURNAL.md
-```
-
-for the complete engineering process.
-
----
-
-## 📁 Repository Structure
+# Repository Structure
 
 ```text
 WRO-2026-FutureEngineers/
+
 ├── README.md
+
 ├── docs/
-│   ├── JOURNAL.md
 │   ├── HARDWARE.md
+│   ├── SOFTWARE.md
 │   ├── WIRING.md
-│   ├── UART_PROTOCOL.md
-│   └── DECISIONS.md
+│   ├── TESTING.md
+│   ├── CALIBRATION.md
+│   ├── CALCULATIONS.md
+│   ├── DECISIONS.md
+│   ├── JOURNAL.md
+│   └── TEAM.md
+
 ├── src/
 │   ├── esp32/
-│   │   ├── main.cpp
-│   │   ├── motor_control.cpp
-│   │   ├── servo_control.cpp
-│   │   ├── sensors.cpp
-│   │   └── config.h
 │   └── raspberry_pi/
-│       ├── main.py
-│       └── camera.py
+
 ├── images/
-│   ├── car/
-│   └── team/
+
 └── videos/
 ```
+# Hardware
+
+The robot combines commercially available components with custom mechanical mounts to create a reliable and modular autonomous platform.
+
+Every hardware component was selected after evaluating multiple alternatives based on performance, reliability, compatibility, availability, and future scalability.
+
+For detailed specifications and engineering justification, see:
+
+📄 **[Hardware Documentation](docs/HARDWARE.md)**
+
+📄 **[Engineering Decisions](docs/DECISIONS.md)**
 
 ---
 
-**Last Updated:** June 2026
+## Main Components
 
-**Competition:** WRO Future Engineers 2026
+| Component | Model |
+|-----------|-------|
+| Main Controller | ESP32 DevKit V1 |
+| Vision Processor | Raspberry Pi 3 Model B |
+| Camera | Raspberry Pi Camera Module |
+| Motor Driver | L298N |
+| Steering Servo | MG996R |
+| Drive Motor | JGA25-370 DC Gear Motor |
+| Distance Sensors | 2 × VL53L1X |
+| IMU | MPU6050 |
+| Color Sensor | TCS34725 |
+| Power Supply | 2S Li-ion Battery |
+| Voltage Regulator | XL4015 Buck Converter |
 
-**Team:** NextGen Minds
+---
 
-**Country:** Palestine 🇵🇸
+## Electronics
+
+The electronics were designed around a distributed architecture.
+
+The ESP32 performs all real-time tasks including:
+
+- Steering control
+- Motor control
+- Sensor acquisition
+- Safety functions
+
+The Raspberry Pi performs computationally intensive tasks including:
+
+- Camera processing
+- Object detection
+- Navigation logic
+- Decision making
+
+Both controllers communicate through a UART interface.
+
+Complete wiring documentation is available in:
+
+📄 **[WIRING.md](docs/WIRING.md)**
+
+---
+
+# Software
+
+The software was developed as independent modules instead of a single monolithic program.
+
+This modular design improves:
+
+- Maintainability
+- Debugging
+- Reliability
+- Future expansion
+
+A clear separation exists between high-level vision processing and low-level embedded control.
+
+For the complete software description, see:
+
+📄 **[SOFTWARE.md](docs/SOFTWARE.md)**
+
+---
+
+## ESP32 Responsibilities
+
+- Motor control
+- Steering control
+- Wall following
+- Reading VL53L1X sensors
+- Reading MPU6050
+- Reading TCS34725
+- Executing movement commands
+- Communication with Raspberry Pi
+
+---
+
+## Raspberry Pi Responsibilities
+
+- Image acquisition
+- Computer vision
+- Obstacle detection
+- Navigation decisions
+- UART communication
+
+---
+
+# Robot Capabilities
+
+The robot is capable of:
+
+- Autonomous driving
+- Wall following
+- Accurate 90° turns
+- Obstacle detection
+- Color marker recognition
+- Heading correction using the IMU
+- Real-time sensor fusion
+- Modular software execution
+
+---
+
+# Engineering Documentation
+
+This repository includes complete engineering documentation covering every stage of development.
+
+| Document | Description |
+|----------|-------------|
+| HARDWARE.md | Hardware components and specifications |
+| SOFTWARE.md | Software architecture |
+| WIRING.md | Electrical wiring diagram |
+| DECISIONS.md | Engineering decision process |
+| CALCULATIONS.md | Engineering calculations |
+| TESTING.md | Testing methodology |
+| CALIBRATION.md | Calibration procedure |
+| JOURNAL.md | Complete development history |
+| TEAM.md | Team information |
+
+---
+
+# Development Process
+
+The robot was developed through several engineering stages:
+
+1. Research and planning
+2. Component selection
+3. Mechanical assembly
+4. Electronics integration
+5. Embedded software development
+6. Computer vision development
+7. Testing and debugging
+8. Calibration
+9. Performance optimization
+10. Final validation
+
+Each stage is documented in the Engineering Journal.
+
+📄 **[JOURNAL.md](docs/JOURNAL.md)**
+
+---
+
+# Design Philosophy
+
+Our goal was not simply to build a robot capable of completing the competition.
+
+Instead, we focused on developing a modular engineering platform that could be continuously improved throughout the season.
+
+Every major engineering decision—including hardware selection, software architecture, sensor placement, power distribution, and control strategy—was supported by research, testing, and repeated validation.
+
+---
+
+# Competition Challenges
+
+## 🟢 Open Challenge
+
+The Open Challenge focuses on autonomous navigation around the track for three complete laps without human intervention.
+
+### Main Objectives
+
+- Stable wall following
+- Accurate 90° turns
+- Reliable lap counting
+- Consistent vehicle speed
+- Heading correction using the IMU
+- High repeatability
+
+The robot combines dual VL53L1X distance sensors with IMU feedback to maintain a stable trajectory throughout the course.
+
+---
+
+## 🔴 Obstacle Challenge
+
+The Obstacle Challenge extends the robot's capabilities by introducing dynamic navigation using computer vision.
+
+### Planned Features
+
+- Red pillar detection
+- Green pillar detection
+- Real-time obstacle avoidance
+- Dynamic path planning
+- Camera-based navigation
+- Vision-assisted steering
+
+These features are executed on the Raspberry Pi while the ESP32 continues handling all real-time vehicle control.
+
+---
+
+# Testing & Validation
+
+Every subsystem was tested independently before full integration.
+
+Testing included:
+
+- Mechanical verification
+- Steering calibration
+- Motor testing
+- Power stability
+- Sensor validation
+- UART communication
+- Wall-following accuracy
+- Corner detection
+- Turn consistency
+- Complete autonomous runs
+
+For detailed testing procedures:
+
+📄 **[TESTING.md](docs/TESTING.md)**
+
+---
+
+# Calibration
+
+To ensure repeatable performance, each sensor was calibrated before testing.
+
+Calibration includes:
+
+- MPU6050 bias correction
+- VL53L1X distance verification
+- Color sensor threshold adjustment
+- Steering center alignment
+- Motor speed tuning
+
+Complete calibration procedure:
+
+📄 **[CALIBRATION.md](docs/CALIBRATION.md)**
+
+---
+
+# Engineering Calculations
+
+The design was supported by engineering calculations throughout the project.
+
+Topics include:
+
+- Robot dimensions
+- Weight analysis
+- Turning geometry
+- Power considerations
+- Safety margins
+
+See:
+
+📄 **[CALCULATIONS.md](docs/CALCULATIONS.md)**
+
+---
+
+# Engineering Decisions
+
+Throughout development, several alternative solutions were evaluated before selecting the final design.
+
+Examples include:
+
+- ESP32 vs Arduino
+- Raspberry Pi integration
+- Sensor selection
+- Power architecture
+- Chassis selection
+- Communication protocol
+
+The reasoning behind every major decision is documented in:
+
+📄 **[DECISIONS.md](docs/DECISIONS.md)**
+
+---
+
+# Gallery
+
+## Final Robot
+
+<p align="center">
+<img src="images/car/final_robot.jpg" width="700">
+</p>
+
+---
+
+## Robot Views
+
+| Front | Rear |
+|------|------|
+| ![](images/car/front.jpg) | ![](images/car/back.jpg) |
+
+| Left | Right |
+|------|------|
+| ![](images/car/left.jpg) | ![](images/car/right.jpg) |
+
+| Top | Electronics |
+|------|------|
+| ![](images/car/top.jpg) | ![](images/car/electronics.jpg) |
+
+---
+
+## Team
+
+<p align="center">
+<img src="images/team/team.jpg" width="600">
+</p>
+
+---
+
+# Videos
+
+The following demonstration videos are included with the project.
+
+| Video | Description |
+|--------|-------------|
+| Open Challenge | Autonomous driving demonstration |
+| Obstacle Challenge | Vision-based obstacle avoidance |
+| Robot Overview | Complete hardware presentation |
+| Software Demo | System architecture explanation |
+
+Videos can be found inside the **videos/** directory.
+
+---
+
+# Engineering Journal
+
+This repository documents the complete development history of the project.
+
+The journal includes:
+
+- Planning
+- Research
+- Hardware assembly
+- Electronics
+- Programming
+- Testing
+- Improvements
+- Final validation
+
+📄 **[JOURNAL.md](docs/JOURNAL.md)**
+
+---
+
+# Project Status
+
+| Module | Status |
+|---------|--------|
+| Mechanical Design | ✅ Completed |
+| Electronics | ✅ Completed |
+| Embedded Software | ✅ Completed |
+| Computer Vision | 🔄 In Progress |
+| Testing | 🔄 Ongoing |
+| Documentation | ✅ Completed |
+
+---
+
+# Repository Statistics
+
+- Complete engineering documentation
+- Modular software architecture
+- Fully documented hardware
+- Wiring diagrams
+- Calibration procedures
+- Testing methodology
+- Engineering calculations
+- Design decisions
+- Development journal
+  ---
+
+# Future Improvements
+
+Although the robot has reached a functional and competitive state, we believe engineering is a continuous process. Future improvements may include:
+
+- Advanced sensor fusion algorithms
+- PID auto-tuning
+- Vision-based localization
+- AI-assisted path planning
+- Custom PCB design
+- Lightweight 3D-printed mechanical components
+- Improved power management
+- Enhanced obstacle avoidance strategies
+
+---
+
+# Acknowledgments
+
+We would like to express our sincere gratitude to everyone who supported this project.
+
+Special thanks to:
+
+- Our coach **Osid Ali** for his continuous guidance and valuable feedback.
+- **Birzeit University** for providing an inspiring learning environment.
+- The **World Robot Olympiad (WRO)** organization for encouraging innovation and engineering excellence.
+- Our families and friends for their encouragement throughout the project.
+
+---
+
+# About This Repository
+
+This repository is intended to document the complete engineering process behind our WRO Future Engineers robot.
+
+It includes not only the final solution, but also the research, engineering decisions, testing procedures, calibration methods, calculations, and software architecture developed throughout the season.
+
+Our goal is to maintain a clear, transparent, and professional engineering record of the project.
+
+---
+
+# Repository Documentation
+
+The complete documentation can be found in the **docs/** directory.
+
+| Document | Description |
+|----------|-------------|
+| 📄 HARDWARE.md | Hardware components and specifications |
+| 📄 SOFTWARE.md | Software architecture |
+| 📄 WIRING.md | Wiring and electronics |
+| 📄 CALIBRATION.md | Calibration procedures |
+| 📄 TESTING.md | Testing methodology |
+| 📄 CALCULATIONS.md | Engineering calculations |
+| 📄 DECISIONS.md | Design decisions |
+| 📄 JOURNAL.md | Engineering journal |
+| 📄 TEAM.md | Team information |
+
+---
+
+# Technologies Used
+
+### Programming
+
+- C++
+- Python
+
+### Embedded Systems
+
+- ESP32 Arduino Framework
+- UART Communication
+- I²C Communication
+
+### Computer Vision
+
+- OpenCV
+- Raspberry Pi Camera
+
+### Sensors
+
+- VL53L1X
+- MPU6050
+- TCS34725
+
+### Mechanical
+
+- Ackermann Steering
+- RC Vehicle Platform
+
+---
+
+# License
+
+This repository was created exclusively for the **World Robot Olympiad (WRO) Future Engineers 2026** competition.
+
+All documentation, software, and mechanical designs were developed by **Team NextGen Minds** unless otherwise stated.
+
+---
+
+<div align="center">
+
+## Thank You for Visiting Our Repository
+
+We hope this repository clearly demonstrates our engineering process, technical decisions, and continuous development throughout the WRO Future Engineers 2026 season.
+
+**Team NextGen Minds 🇵🇸**
+
+**Birzeit University**
+
+**World Robot Olympiad 2026**
+
+⭐ If you found this project interesting, thank you for taking the time to explore our work.
+
+</div>
