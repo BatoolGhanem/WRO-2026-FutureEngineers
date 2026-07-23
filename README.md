@@ -453,13 +453,6 @@ The reasoning behind every major decision is documented in:
 |------|------|
 | ![](images/car/top.jpg) |![](images/car/bottom.jpg) |
 
----
-
-## Team
-
-<p align="center">
-<img src="images/team/team_WRO.jpg" width="700">
-</p>
 
 ---
 
